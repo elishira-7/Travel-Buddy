@@ -1,7 +1,8 @@
 # Travel-Buddy
 Python project exploring data cleaning, structured datasets, and filtering through this databaase.
 
-
+NOTE: 
+This project runs locally and requires a server to be started manually; no live preview is provided but some snapshots of the site are in the app_preview folder. 
 
 
 Python Data / Database Project
