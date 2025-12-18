@@ -1,0 +1,280 @@
+/* ======================
+   GLOBAL RESET
+====================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #222;
+    background-color: #f7f7f7;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ======================
+   HEADER (DEFAULT / OVERLAY)
+====================== */
+.site-header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.site-header.solid {
+    position: relative;
+    background: linear-gradient(90deg, #4A90E2, #50C9CE);
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.5px;
+}
+
+.nav a {
+    margin-left: 24px;
+    font-weight: 500;
+    color: white;
+    opacity: 0.9;
+}
+
+.nav a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+/* ======================
+   HERO (HOME ONLY)
+====================== */
+.hero {
+    position: relative;
+    height: 80vh;
+    background-image: url("./bodyimage.png");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        rgba(0,0,0,0.55),
+        rgba(0,0,0,0.35)
+    );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    padding: 0 20px;
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 28px;
+    opacity: 0.95;
+}
+
+/* ======================
+   CTA
+====================== */
+.cta-button {
+    display: inline-block;
+    padding: 14px 32px;
+    background-color: #f5a623;
+    color: #111;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* ======================
+   GENERIC CONTENT
+====================== */
+.content {
+    max-width: 1100px;
+    margin: 80px auto;
+    padding: 0 20px;
+}
+
+.intro {
+    margin-bottom: 60px;
+}
+
+.intro h2 {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.intro p {
+    font-size: 16px;
+    color: #555;
+}
+
+/* ======================
+   FEATURES (HOME)
+====================== */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.feature-card h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.feature-card p {
+    color: #555;
+    font-size: 15px;
+}
+
+/* ======================
+   SEARCH PAGE
+====================== */
+.search-page {
+    max-width: 1100px;
+    margin: 120px auto;
+    padding: 0 20px;
+}
+
+.search-card {
+    background: white;
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    margin-bottom: 60px;
+}
+
+.search-card h1 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* SEARCH FORM GRID */
+.search-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.search-grid input,
+.search-grid select {
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+.search-btn {
+    grid-column: span 2;
+    padding: 16px;
+    background: #f5a623;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.search-btn:hover {
+    background: #e5941f;
+}
+
+/* ======================
+   RESULTS GRID
+====================== */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+/* ======================
+   RESULT CARDS
+====================== */
+.card {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 14px 32px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+}
+
+.card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.card-content p {
+    margin: 4px 0;
+    font-size: 14px;
+    color: #444;
+}
+
+/* ======================
+   FOOTER
+====================== */
+.footer {
+    background: #2f2f2f;
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 80px;
+}

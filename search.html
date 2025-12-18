@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search – Travel Buddy</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body class="page-search">
+
+    <!-- HEADER -->
+    <header class="site-header solid">
+        <div class="header-inner">
+            <div class="logo">Travel Buddy</div>
+            <nav class="nav">
+                <a href="/">Home</a>
+                <a href="/search">Search</a>
+                <a href="/about">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- SEARCH PAGE -->
+    <main class="search-page">
+
+        <div class="search-card">
+            <h1>Find your perfect holiday</h1>
+
+            <form id="searchForm" class="search-grid">
+
+                <input id="region" type="text" placeholder="Region (e.g. Europe)">
+                <input id="budget" type="number" placeholder="Max Budget (USD)">
+
+                <select id="nightlife">
+                    <option value="">Nightlife?</option>
+                    <option value="yes">Yes</option>
+                </select>
+
+                <select id="lgbtq">
+                    <option value="">LGBTQ Friendly?</option>
+                    <option value="yes">Yes</option>
+                </select>
+
+                <input id="min_safety" type="number" placeholder="Min Safety Index">
+                <input id="min_temp" type="number" placeholder="Min Avg Temp (°C)">
+                <input id="max_temp" type="number" placeholder="Max Avg Temp (°C)">
+                <input id="visa" type="text" placeholder="Visa (e.g. visa-free)">
+
+                <button type="submit" class="search-btn">
+                    Search Destinations
+                </button>
+            </form>
+        </div>
+
+        <!-- RESULTS -->
+        <section id="results" class="results-grid"></section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2025 Travel Buddy</p>
+    </footer>
+
+<script>
+document.getElementById("searchForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const params = new URLSearchParams({
+        region: region.value,
+        max_budget: budget.value,
+        nightlife: nightlife.value,
+        lgbtq: lgbtq.value,
+        min_safety: min_safety.value,
+        min_temp: min_temp.value,
+        max_temp: max_temp.value,
+        visa: visa.value
+    });
+
+    const res = await fetch("/api/search?" + params.toString());
+    const data = await res.json();
+
+    const results = document.getElementById("results");
+    results.innerHTML = "";
+
+    if (!data || data.length === 0) {
+        results.innerHTML = "<p>No results found.</p>";
+        return;
+    }
+
+    data.forEach(function (c) {
+        const card = document.createElement("div");
+        card.className = "card";
+
+        const img = document.createElement("img");
+        const safe = c.Country.toLowerCase().replace(/\s+/g, "");
+        img.src = "/images/" + safe + ".jpg";
+        img.alt = c.Country;
+        img.onerror = function () {
+            img.src = "/images/fallback.jpg";
+        };
+
+        const content = document.createElement("div");
+        content.className = "card-content";
+
+        content.innerHTML =
+            "<h3>" + c.Country + "</h3>" +
+            "<p><strong>Region:</strong> " + c.Region + "</p>" +
+            "<p><strong>Cost:</strong> $" + c.AvgDailyCostUSD + "</p>" +
+            "<p><strong>Safety:</strong> " + c.SafetyIndex + "</p>" +
+            "<p><strong>Nightlife:</strong> " + (c.Nightlife ? "Yes" : "No") + "</p>" +
+            "<p><strong>LGBTQ Friendly:</strong> " + (c.LGBTQFriendly ? "Yes" : "No") + "</p>" +
+            "<p><strong>Visa:</strong> " + c.Visa + "</p>" +
+            "<p><strong>Avg Temp:</strong> " + c.Avgtemp + "°C</p>";
+
+        card.appendChild(img);
+        card.appendChild(content);
+        results.appendChild(card);
+    });
+});
+</script>
+
+</body>
+</html>
